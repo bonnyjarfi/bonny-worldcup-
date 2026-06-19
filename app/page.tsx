@@ -29,15 +29,7 @@ match.awayTeam?.name
 const now = new Date();
 
 const upcomingMatches = matches
-  .filter((match: any) => {
-    const matchDate = new Date(match.utcDate);
-
-    return (
-      match.status === "TIMED" ||
-      match.status === "SCHEDULED" ||
-      matchDate > now
-    );
-  })
+  .filter((m: any) => m.status === "TIMED")
   .sort(
     (a: any, b: any) =>
       new Date(a.utcDate).getTime() -
