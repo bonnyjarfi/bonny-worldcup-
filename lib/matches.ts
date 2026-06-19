@@ -1,0 +1,111 @@
+export const matches = [
+  {
+    slug: "netherlands-vs-japan",
+    date: "15 Juni 2026",
+    home: "🇳🇱 Netherlands",
+    away: "🇯🇵 Japan",
+    time: "05:00 WIT",
+    group: "Group F",
+    stadium: "Toronto Stadium",
+    favorite: true,
+  },
+
+  {
+    slug: "spain-vs-cape-verde",
+    date: "16 Juni 2026",
+    home: "🇪🇸 Spain",
+    away: "🇨🇻 Cape Verde",
+    time: "01:00 WIT",
+    group: "Group H",
+    stadium: "Mexico City Stadium",
+    favorite: true,
+  },
+
+  {
+    slug: "france-vs-senegal",
+    date: "17 Juni 2026",
+    home: "🇫🇷 France",
+    away: "🇸🇳 Senegal",
+    time: "04:00 WIT",
+    group: "Group I",
+    stadium: "Atlanta Stadium",
+    favorite: true,
+  },
+
+  {
+    slug: "argentina-vs-algeria",
+    date: "17 Juni 2026",
+    home: "🇦🇷 Argentina",
+    away: "🇩🇿 Algeria",
+    time: "10:00 WIT",
+    group: "Group J",
+    stadium: "Dallas Stadium",
+    favorite: true,
+  },
+
+  {
+    slug: "portugal-vs-dr-congo",
+    date: "18 Juni 2026",
+    home: "🇵🇹 Portugal",
+    away: "🇨🇩 DR Congo",
+    time: "02:00 WIT",
+    group: "Group K",
+    stadium: "Vancouver Stadium",
+    favorite: true,
+  },
+
+  {
+    slug: "england-vs-croatia",
+    date: "18 Juni 2026",
+    home: "🏴 England",
+    away: "🇭🇷 Croatia",
+    time: "05:00 WIT",
+    group: "Group L",
+    stadium: "Seattle Stadium",
+    favorite: true,
+  },
+
+  {
+    slug: "brazil-vs-haiti",
+    date: "20 Juni 2026",
+    home: "🇧🇷 Brazil",
+    away: "🇭🇹 Haiti",
+    time: "08:30 WIT",
+    group: "Group G",
+    stadium: "Los Angeles Stadium",
+    favorite: true,
+  },
+
+  {
+    slug: "netherlands-vs-sweden",
+    date: "21 Juni 2026",
+    home: "🇳🇱 Netherlands",
+    away: "🇸🇪 Sweden",
+    time: "02:00 WIT",
+    group: "Group F",
+    stadium: "Houston Stadium",
+    favorite: true,
+  },
+
+  {
+    slug: "germany-vs-ivory-coast",
+    date: "21 Juni 2026",
+    home: "🇩🇪 Germany",
+    away: "🇨🇮 Ivory Coast",
+    time: "05:00 WIT",
+    group: "Group E",
+    stadium: "Kansas City Stadium",
+    favorite: true,
+  },
+
+  {
+    slug: "japan-vs-tunisia",
+    date: "22 Juni 2026",
+    home: "🇯🇵 Japan",
+    away: "🇹🇳 Tunisia",
+    time: "13:00 WIT",
+    group: "Group F",
+    stadium: "Miami Stadium",
+    favorite: true,
+  },
+];
