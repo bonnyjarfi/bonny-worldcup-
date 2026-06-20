@@ -249,20 +249,6 @@ return ( <main className="min-h-screen bg-slate-100">
 </Link>
 
 <Link
-  href="/team/portugal"
-  className="
-    bg-white
-    rounded-2xl
-    p-5
-    shadow
-    hover:shadow-lg
-    transition
-  "
->
-  🇵🇹 Portugal
-</Link>
-
-<Link
   href="/favorites"
   className="
     bg-white
