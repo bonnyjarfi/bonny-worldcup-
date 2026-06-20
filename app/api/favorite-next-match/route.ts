@@ -5,7 +5,8 @@ export async function GET() {
   const data = await getWorldCupMatches();
   const matches = data.matches || [];
 
-  // normalize function biar aman
+  console.log("TOTAL MATCHES:", matches.length);
+
   const normalize = (name: string = "") =>
     name.toLowerCase().replace(/[^a-z]/g, "");
 
@@ -19,7 +20,11 @@ export async function GET() {
     });
   });
 
-  // TIMED (future match)
+  console.log(
+    "FAVORITE MATCHES:",
+    favoriteMatches.length
+  );
+
   const upcoming = favoriteMatches
     .filter((m: any) => m.status === "TIMED")
     .sort(
@@ -28,23 +33,15 @@ export async function GET() {
         new Date(b.utcDate).getTime()
     );
 
-  // fallback 1: TIMED
-  // fallback 2: LIVE
-  // fallback 3: FINISHED terbaru
-  const live = favoriteMatches.filter(
-    (m: any) => m.status === "LIVE"
+  console.log(
+    "UPCOMING:",
+    upcoming.length
   );
 
-  const finished = favoriteMatches
-    .filter((m: any) => m.status === "FINISHED")
-    .sort(
-      (a: any, b: any) =>
-        new Date(b.utcDate).getTime() -
-        new Date(a.utcDate).getTime()
-    );
-
   const result =
-    upcoming[0] || live[0] || finished[0] || null;
+    upcoming[0] || null;
+
+  console.log("RESULT:", result);
 
   return Response.json(result);
 }
