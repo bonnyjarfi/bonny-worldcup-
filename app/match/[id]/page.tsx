@@ -90,7 +90,7 @@ export default async function MatchDetailPage({
 
           <div className="absolute inset-0 bg-black/60" />
 
-          <div className="text-center">
+          <div className="relative z-10 p-8 md:p-12 text-center text-white">
 
   <div
     className="
@@ -124,39 +124,66 @@ export default async function MatchDetailPage({
 </div>
 
         </div>
+
 {/* SCOREBOARD */}
-<div className="bg-white rounded-3xl shadow-lg p-8 mb-6">
+<div className="bg-white rounded-3xl shadow-lg p-6 md:p-8 mb-6">
 
   <div className="grid grid-cols-3 items-center text-center">
 
     <div>
-      <p className="text-5xl mb-2">
+      <p className="text-4xl md:text-5xl mb-2">
         {teamFlags[match.homeTeam?.name] || "⚽"}
       </p>
 
-      <h3 className="text-3xl font-bold text-white">
+      <h3 className="text-lg md:text-3xl font-bold text-slate-800">
         {match.homeTeam?.name}
       </h3>
     </div>
 
     <div>
 
-      <div className="text-6xl font-bold text-blue-700">
-        -
+      <div className="text-3xl md:text-6xl font-bold text-blue-700">
+
+        {match.score?.fullTime?.home ?? 0}
+
+        <span className="mx-3">
+          -
+        </span>
+
+        {match.score?.fullTime?.away ?? 0}
+
       </div>
 
-      <p className="text-gray-500 mt-2">
-        Match Not Started
-      </p>
+      <div className="mt-3">
+
+        {match.status === "LIVE" && (
+          <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm animate-pulse">
+            🔴 LIVE
+          </span>
+        )}
+
+        {match.status === "TIMED" && (
+          <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+            Scheduled
+          </span>
+        )}
+
+        {match.status === "FINISHED" && (
+          <span className="bg-green-600 text-white px-3 py-1 rounded-full text-sm">
+            Final
+          </span>
+        )}
+
+      </div>
 
     </div>
 
     <div>
-      <p className="text-5xl mb-2">
+      <p className="text-4xl md:text-5xl mb-2">
         {teamFlags[match.awayTeam?.name] || "⚽"}
       </p>
 
-      <h3 className="text-3xl font-bold text-white">
+      <h3 className="text-lg md:text-3xl font-bold text-slate-800">
         {match.awayTeam?.name}
       </h3>
     </div>
@@ -176,7 +203,7 @@ export default async function MatchDetailPage({
               Match Date
             </p>
 
-            <h3 className="text-2xl font-bold text-white">
+            <h3 className="text-2xl font-bold text-slate-800">
               {date.toLocaleDateString(
                 "id-ID",
               {
@@ -219,9 +246,20 @@ export default async function MatchDetailPage({
               Status
             </p>
 
-            <h3 className="text-xl font-bold text-blue-700">
-              {match.status}
-            </h3>
+            <span
+            className={`
+            px-3 py-1 rounded-full text-white font-medium
+            ${
+            match.status === "LIVE"
+            ? "bg-red-500"
+            : match.status === "FINISHED"
+            ? "bg-green-600"
+        : "bg-blue-600"
+    }
+  `}
+>
+  {match.status}
+</span>
 
           </div>
 
@@ -247,6 +285,12 @@ export default async function MatchDetailPage({
                 FIFA World Cup 2026
               </strong>
             </div>
+            {match.venue && (
+  <div className="flex justify-between border-b pb-3">
+    <span>Venue</span>
+    <strong>{match.venue}</strong>
+  </div>
+)}
 
             <div className="flex justify-between border-b pb-3">
               <span>Home Team</span>

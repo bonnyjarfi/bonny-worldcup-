@@ -4,7 +4,6 @@ import { favoriteTeams } from "@/lib/favoriteTeams";
 import NotificationCenter from "@/components/NotificationCenter";
 import DashboardStats from "@/components/DashboardStats";
 import Link from "next/link";
-import { Menu } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 import {
@@ -28,7 +27,6 @@ match.awayTeam?.name
 )
 ) || [];
 
-const now = new Date();
 
 const upcomingMatches = matches
   .filter((m: any) => m.status === "TIMED")
@@ -38,6 +36,21 @@ const upcomingMatches = matches
       new Date(b.utcDate).getTime()
   )
   .slice(0, 5);
+
+  const liveMatches = matches.filter(
+    (m: any) =>
+      m.status === "LIVE" ||
+      m.status === "IN_PLAY"
+  );
+
+  console.log(
+    "FIRST MATCH:",
+    JSON.stringify(
+      upcomingMatches[0],
+      null,
+      2
+    )
+  );
 
 return ( 
 
@@ -90,6 +103,7 @@ return (
 
       <div className="inline-flex items-center gap-2 bg-white/90 px-4 py-2 rounded-full mb-5 shadow">
   <span>🏆</span>
+
   <span className="text-sm font-semibold text-slate-800">
     FIFA World Cup 2026
   </span>
@@ -161,6 +175,7 @@ return (
         </div>
 
       </div>
+      
 
     </section>
 
@@ -240,6 +255,97 @@ return (
       <div className="lg:col-span-2 space-y-6">
 
         <CountdownCard />
+        
+        {liveMatches.length === 0 && (
+  <div className="bg-white rounded-3xl shadow-lg p-6">
+
+    <h2 className="font-bold text-xl mb-2">
+      🔴 Live Matches
+    </h2>
+
+    <p className="text-gray-500">
+      No live matches currently.
+    </p>
+
+  </div>
+)}
+        {liveMatches.length > 0 && (
+  <div className="bg-white rounded-3xl shadow-lg p-6">
+
+    <div className="flex items-center gap-2 mb-6">
+      <span className="animate-pulse text-red-500">
+        🔴
+      </span>
+
+      <h2 className="text-2xl font-bold">
+        Live Matches
+      </h2>
+    </div>
+
+    <div className="space-y-4">
+
+      {liveMatches.map((match: any) => (
+        <div
+          key={match.id}
+          className="
+            rounded-2xl
+            p-5
+            text-white
+            bg-gradient-to-r
+            from-red-700
+            to-red-500
+          "
+        >
+
+          <div className="text-center">
+
+            <h3 className="text-xl font-bold">
+              {match.homeTeam?.name}
+            </h3>
+
+            <div className="my-3">
+
+              <span className="text-5xl font-bold">
+                {match.score?.fullTime?.home ?? 0}
+              </span>
+
+              <span className="mx-4 text-4xl">
+                -
+              </span>
+
+              <span className="text-5xl font-bold">
+                {match.score?.fullTime?.away ?? 0}
+              </span>
+
+            </div>
+
+            <h3 className="text-xl font-bold">
+              {match.awayTeam?.name}
+            </h3>
+
+            <div className="mt-4">
+              <span
+                className="
+                  bg-white/20
+                  px-3
+                  py-1
+                  rounded-full
+                  text-sm
+                "
+              >
+                🔴 LIVE
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+)}
 
         <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-lg p-6">
 
@@ -254,72 +360,70 @@ return (
           </div>
 
           <div className="space-y-4">
-          {upcomingMatches.map((match: any) => {
+  {upcomingMatches.map((match: any) => {
 
-const date = new Date(
-  match.utcDate
-);
+    const date = new Date(match.utcDate);
 
-return (
-  <a
-  
-  key={match.id}
-  href={`/match/${match.id}`}
-  className="
-    block
-    relative
-    overflow-hidden
-    rounded-3xl
-    p-6
-    text-white
-    shadow-lg
-    hover:scale-[1.02]
-    hover:shadow-2xl
-    transition-all
-    bg-gradient-to-r
-    from-blue-900
-    via-blue-700
-    to-cyan-600
-  "
->
-    <div className="text-center">
+    return (
+      <a
+        key={match.id}
+        href={`/match/${match.id}`}
+        className="
+          block
+          relative
+          overflow-hidden
+          rounded-3xl
+          p-6
+          text-white
+          shadow-lg
+          hover:scale-[1.02]
+          hover:shadow-2xl
+          transition-all
+          bg-gradient-to-r
+          from-blue-900
+          via-blue-700
+          to-cyan-600
+        "
+      >
+        <div className="text-center">
 
-    <h3 className="text-lg md:text-2xl font-bold text-white">
-        {match.homeTeam?.name}
-      </h3>
+          {match.status === "LIVE" && (
+            <div className="mb-3">
+              <span className="bg-red-500 px-3 py-1 rounded-full text-xs animate-pulse">
+                🔴 LIVE
+              </span>
+            </div>
+          )}
 
-      <p className="text-yellow-300 my-3 font-bold">
-        VS
-      </p>
+          <h3 className="text-2xl font-bold">
+            {match.homeTeam?.name}
+          </h3>
 
-      <h3 className="text-lg md:text-2xl font-bold text-white">
-        {match.awayTeam?.name}
-      </h3>
+          <div className="my-4">
+            <span className="text-4xl font-bold">
+              {match.score?.fullTime?.home ?? 0}
+            </span>
 
-    </div>
+            <span className="mx-3 text-3xl">
+              -
+            </span>
 
-    <div className="flex justify-between mt-5 text-sm text-gray-500">
-
-      <span>
-        ...
-      </span>
-
-      <span>
-        ...
-      </span>
-
-    </div>
-
-  </a>
-  
-);
-})}
-
+            <span className="text-4xl font-bold">
+              {match.score?.fullTime?.away ?? 0}
+            </span>
           </div>
 
-        </div>
+          <h3 className="text-2xl font-bold">
+            {match.awayTeam?.name}
+          </h3>
 
-      </div>
+        </div>
+      </a>
+    );
+  })}
+</div>
+</div>
+</div>
 
       {/* RIGHT */}
       <div className="space-y-6">
