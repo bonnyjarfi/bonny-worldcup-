@@ -4,6 +4,8 @@ import { favoriteTeams } from "@/lib/favoriteTeams";
 import NotificationCenter from "@/components/NotificationCenter";
 import DashboardStats from "@/components/DashboardStats";
 import Link from "next/link";
+import { Menu } from "lucide-react";
+import Navbar from "@/components/Navbar";
 
 import {
 Bell,
@@ -37,43 +39,13 @@ const upcomingMatches = matches
   )
   .slice(0, 5);
 
-return ( <main className="min-h-screen bg-slate-100">
+return ( 
 
-```
-  {/* HEADER */}
-  <header className="bg-gradient-to-r from-blue-950 to-blue-800 text-white shadow-lg sticky top-0 z-50">
-    <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+<main className="min-h-screen bg-slate-100">
+  <Navbar />
 
-      <div>
-        <h1 className="text-3xl font-bold">
-          ⚽ Bonny's World Cup Tracker
-        </h1>
 
-        <p className="text-blue-300 text-sm">
-          FIFA World Cup 2026 • WIT
-        </p>
-      </div>
-
-      <nav className="hidden md:flex gap-8 font-medium">
-
-        <a href="/" className="hover:text-yellow-300">
-          Dashboard
-        </a>
-
-        <a href="/schedule" className="hover:text-yellow-300">
-          Schedule
-        </a>
-
-        <a href="/standings" className="hover:text-yellow-300">
-          Standings
-        </a>
-
-      </nav>
-
-    </div>
-  </header>
-
-  <div className="max-w-7xl mx-auto p-6">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
 
     {/* HERO */}
     <section
@@ -114,7 +86,7 @@ return ( <main className="min-h-screen bg-slate-100">
       />
 
       {/* Content */}
-      <div className="relative z-10 p-12 text-white">
+      <div className="relative z-10 p-6 sm:p-8 md:p-12 text-white">
 
       <div className="inline-flex items-center gap-2 bg-white/90 px-4 py-2 rounded-full mb-5 shadow">
   <span>🏆</span>
@@ -123,23 +95,23 @@ return ( <main className="min-h-screen bg-slate-100">
   </span>
 </div>
 
-        <h2 className="text-5xl md:text-6xl font-bold leading-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
           Welcome Back
           <br />
 
-        </h2>
+        </h1>
 
-        <p className="mt-5 text-3xl text-blue-100 max-w-2xl">
+        <p className="mt-5 text-base sm:text-lg md:text-xl text-blue-100 max-w-2xl leading-relaxed">
           Website ini dikembangkan supaya kam bisa lihat
           Jadwal, klasemen,
           dan pertandingan kam punya tim favorit dengan zona waktu WIT
           menyesuaikan waktu papua kah ini..
         </p>
 
-        <div className="grid md:grid-cols-4 gap-4 mt-8 max-w-4xl">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-4xl">
 
 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4">
-  <p className="text-3xl font-bold">48</p>
+<p className="text-2xl md:text-3xl font-bold">48</p>
   <p className="text-sm text-blue-100">
     Teams
   </p>
@@ -218,7 +190,7 @@ return ( <main className="min-h-screen bg-slate-100">
      
      
  
-    <div className="grid md:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
 
 <Link
   href="/schedule"
@@ -313,7 +285,7 @@ return (
 >
     <div className="text-center">
 
-      <h3 className="text-2xl font-bold text-white">
+    <h3 className="text-lg md:text-2xl font-bold text-white">
         {match.homeTeam?.name}
       </h3>
 
@@ -321,7 +293,7 @@ return (
         VS
       </p>
 
-      <h3 className="text-2xl font-bold text-white">
+      <h3 className="text-lg md:text-2xl font-bold text-white">
         {match.awayTeam?.name}
       </h3>
 
