@@ -101,11 +101,10 @@ return (
 
         </h1>
 
-        <p className="mt-5 text-base sm:text-lg md:text-xl text-blue-100 max-w-2xl leading-relaxed">
+        <p className="mt-4 text-base sm:text-lg md:text-xl text-blue-100 max-w-2xl leading-relaxed">
           Website ini dikembangkan supaya kam bisa lihat
           Jadwal, klasemen,
-          dan pertandingan kam punya tim favorit dengan zona waktu WIT
-          menyesuaikan waktu papua kah ini..
+          dan pertandingan menyesuaikan waktu papua
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-4xl">
