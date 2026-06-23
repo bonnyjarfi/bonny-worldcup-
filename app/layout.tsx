@@ -13,12 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bonny's World Cup Tracker ⚽",
+  title: "World Cup Tracker ⚽",
   description:
     "Track FIFA World Cup 2026 matches, standings and favorite teams in Papua WIT timezone",
 
   openGraph: {
-    title: "Bonny's World Cup Tracker ⚽",
+    title: "World Cup Tracker ⚽",
     description:
       "FIFA World Cup 2026 Schedule & Standings",
     images: ["/og-image.png"],
