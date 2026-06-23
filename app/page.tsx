@@ -578,7 +578,7 @@ return (
 
     <div className="max-w-7xl mx-auto px-6 text-center text-gray-500">
 
-      © 2026 Bonny's World Cup Tracker • Powered by Next.js & Football Data API
+      © 2026 Bonz World Cup Tracker • Powered by Next.js & Football Data API
 
     </div>
 

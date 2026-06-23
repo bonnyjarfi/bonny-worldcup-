@@ -13,7 +13,7 @@ export default function Navbar() {
 
         <div>
           <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
-            ⚽ Bonny's World Cup Tracker
+            ⚽ World Cup Tracker
           </h1>
 
           <p className="text-blue-300 text-sm">
