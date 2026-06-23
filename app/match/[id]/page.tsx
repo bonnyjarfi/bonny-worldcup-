@@ -20,7 +20,7 @@ export default async function MatchDetailPage({
   const data = await getWorldCupMatches();
 
   const match = data.matches.find(
-    (m: any) => String(m.id) === id
+    (m: any) => m.id.toString() === id
   );
 
   if (!match) {
@@ -35,13 +35,27 @@ export default async function MatchDetailPage({
 
   const date = new Date(match.utcDate);
 
+  const dateWIT = date.toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    timeZone: "Asia/Jayapura",
+  });
+
+  const timeWIT = date.toLocaleTimeString("id-ID", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Asia/Jayapura",
+  });
+
   return (
     <main className="min-h-screen bg-slate-100">
+  
 
-      {/* HEADER */}
+    {/* HEADER */}
       <header className="bg-gradient-to-r from-blue-950 to-blue-800 text-white shadow-lg">
 
-        <div className="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+        <div className="max-w-[1400px] mx-auto px-6 py-6 flex justify-between items-center">
 
           <div>
 
@@ -192,78 +206,63 @@ export default async function MatchDetailPage({
 
 </div>
 
-        {/* INFO */}
-        <div className="grid md:grid-cols-3 gap-6 mb-6">
+   {/* INFO */}
+<div className="grid md:grid-cols-3 gap-6 mb-6">
 
-          <div className="bg-white rounded-3xl shadow p-6">
+<div className="bg-white rounded-3xl shadow p-6">
 
-            <CalendarDays className="mb-3" />
+  <CalendarDays className="mb-3" />
 
-            <p className="text-gray-500">
-              Match Date
-            </p>
+  <p className="text-gray-500">
+    Match Date
+  </p>
 
-            <h3 className="text-2xl font-bold text-slate-800">
-              {date.toLocaleDateString(
-                "id-ID",
-              {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              }
-              )}
-            </h3>
+  <h3 className="text-2xl font-bold text-slate-800">
+    {dateWIT}
+  </h3>
 
-          </div>
+</div>
 
-          <div className="bg-white rounded-3xl shadow p-6">
+<div className="bg-white rounded-3xl shadow p-6">
 
-            <Clock className="mb-3" />
+  <Clock className="mb-3" />
 
-            <p className="text-gray-500">
-              Kick Off (WIT)
-            </p>
+  <p className="text-gray-500">
+    Kick Off (WIT)
+  </p>
 
-            <h3 className="text-xl font-bold">
-              {date.toLocaleTimeString(
-                "id-ID",
-                {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  timeZone:
-                    "Asia/Jayapura",
-                }
-              )}
-            </h3>
+  <h3 className="text-xl font-bold">
+    {timeWIT}
+  </h3>
 
-          </div>
+</div>
 
-          <div className="bg-white rounded-3xl shadow p-6">
+<div className="bg-white rounded-3xl shadow p-6">
 
-            <Trophy className="mb-3" />
+  <Trophy className="mb-3" />
 
-            <p className="text-gray-500">
-              Status
-            </p>
+  <p className="text-gray-500">
+    Status
+  </p>
 
-            <span
-            className={`
-            px-3 py-1 rounded-full text-white font-medium
-            ${
-            match.status === "LIVE"
-            ? "bg-red-500"
-            : match.status === "FINISHED"
-            ? "bg-green-600"
-        : "bg-blue-600"
-    }
-  `}
->
-  {match.status}
-</span>
+  <span
+    className={`
+      px-3 py-1 rounded-full text-white font-medium
+      ${
+        match.status === "LIVE"
+          ? "bg-red-500"
+          : match.status === "FINISHED"
+          ? "bg-green-600"
+          : "bg-blue-600"
+      }
+    `}
+  >
+    {match.status}
+  </span>
 
-          </div>
+</div>
 
-        </div>
+</div>
 
         {/* MATCH DETAILS */}
         <div className="bg-white rounded-3xl shadow p-6">

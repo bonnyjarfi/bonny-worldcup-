@@ -303,21 +303,33 @@ return (
               {match.homeTeam?.name}
             </h3>
 
-            <div className="my-3">
+            <div className="my-4">
 
-              <span className="text-5xl font-bold">
-                {match.score?.fullTime?.home ?? 0}
-              </span>
+  {match.status === "TIMED" ? (
 
-              <span className="mx-4 text-4xl">
-                -
-              </span>
+    <span className="text-4xl font-bold text-yellow-300">
+      VS
+    </span>
 
-              <span className="text-5xl font-bold">
-                {match.score?.fullTime?.away ?? 0}
-              </span>
+  ) : (
 
-            </div>
+    <>
+      <span className="text-4xl font-bold">
+        {match.score?.fullTime?.home ?? 0}
+      </span>
+
+      <span className="mx-3 text-3xl">
+        -
+      </span>
+
+      <span className="text-4xl font-bold">
+        {match.score?.fullTime?.away ?? 0}
+      </span>
+    </>
+
+  )}
+
+</div>
 
             <h3 className="text-xl font-bold">
               {match.awayTeam?.name}
@@ -385,45 +397,95 @@ return (
           to-cyan-600
         "
       >
-        <div className="text-center">
+     <div className="mb-3">
 
-          {match.status === "LIVE" && (
-            <div className="mb-3">
-              <span className="bg-red-500 px-3 py-1 rounded-full text-xs animate-pulse">
-                🔴 LIVE
-              </span>
-            </div>
-          )}
+{match.status === "LIVE" && (
+  <span className="bg-red-500 px-3 py-1 rounded-full text-xs animate-pulse">
+    🔴 LIVE
+  </span>
+)}
 
-          <h3 className="text-2xl font-bold">
-            {match.homeTeam?.name}
-          </h3>
+{match.status === "TIMED" && (
+  <span className="bg-blue-500 px-3 py-1 rounded-full text-xs">
+    ⏳ UPCOMING
+  </span>
+)}
 
-          <div className="my-4">
-            <span className="text-4xl font-bold">
-              {match.score?.fullTime?.home ?? 0}
-            </span>
+{match.status === "FINISHED" && (
+  <span className="bg-green-500 px-3 py-1 rounded-full text-xs">
+    ✅ FINISHED
+  </span>
+)}
 
-            <span className="mx-3 text-3xl">
-              -
-            </span>
+</div>
 
-            <span className="text-4xl font-bold">
-              {match.score?.fullTime?.away ?? 0}
-            </span>
-          </div>
+<div className="text-center">
 
-          <h3 className="text-2xl font-bold">
-            {match.awayTeam?.name}
-          </h3>
+  <h3 className="text-2xl font-bold">
+    {match.homeTeam?.name}
+  </h3>
 
-        </div>
-      </a>
-    );
-  })}
+  <div className="my-4">
+
+    {match.status === "TIMED" ? (
+
+      <span className="text-4xl font-bold text-yellow-300">
+        VS
+      </span>
+
+    ) : (
+
+      <>
+        <span className="text-4xl font-bold">
+          {match.score?.fullTime?.home ?? 0}
+        </span>
+
+        <span className="mx-3 text-3xl">
+          -
+        </span>
+
+        <span className="text-4xl font-bold">
+          {match.score?.fullTime?.away ?? 0}
+        </span>
+      </>
+
+    )}
+
+  </div>
+
+  <h3 className="text-2xl font-bold">
+    {match.awayTeam?.name}
+  </h3>
+  <div className="mt-4 border-t border-white/20 pt-4 text-sm text-blue-100">
+
+  <p>
+    📅 {date.toLocaleDateString("id-ID", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      timeZone: "Asia/Jayapura",
+    })}
+  </p>
+
+  <p className="mt-1">
+    🕒 {date.toLocaleTimeString("id-ID", {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "Asia/Jayapura",
+    })} WIT
+  </p>
+
+</div>
+
+</div>
+
+</a>
+);
+})}
 </div>
 </div>
 </div>
+
 
       {/* RIGHT */}
       <div className="space-y-6">
